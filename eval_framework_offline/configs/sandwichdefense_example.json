@@ -1,0 +1,8 @@
+{
+  "base_url": "${GUARD_BASE_URL:http://localhost:8000}",
+  "model_name": "${GUARD_MODEL:JANUS}",
+  "api_key": "${GUARD_API_KEY:EMPTY}",
+  "max_tokens": 512,
+  "temperature": 0.0,
+  "timeout": 60.0
+}

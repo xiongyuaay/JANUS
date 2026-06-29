@@ -1,0 +1,53 @@
+# Shared model endpoint definitions.
+# String values support ${VAR:default} interpolation from the process env.
+# Empty base_url lets the OpenAI SDK use its default endpoint; set the
+# benchmark-specific *_BASE_URL variables when serving non-OpenAI judges.
+
+models:
+  qwen-3.5-122B-uncensored-stxt:
+    provider: openai_compatible
+    name: ${OPENAI_MODEL:qwen-3.5-122B-uncensored-stxt}
+    base_url: ${OPENAI_BASE_URL}
+    api_key: ${OPENAI_API_KEY:EMPTY}
+
+  Qwen3-32B:
+    provider: openai_compatible
+    name: ${GUARD_MODEL:Qwen/Qwen3-32B}
+    base_url: ${GUARD_BASE_URL}
+    api_key: ${GUARD_API_KEY:EMPTY}
+
+  Qwen3.5-397B-A17B-FP8:
+    provider: openai_compatible
+    name: ${OPENAI_MODEL:Qwen/Qwen3.5-397B-A17B-FP8}
+    base_url: ${OPENAI_BASE_URL}
+    api_key: ${OPENAI_API_KEY:EMPTY}
+
+  agentharm_official_judge:
+    provider: openai_compatible
+    name: ${AGENTHARM_JUDGE_MODEL:gpt-4o-2024-08-06}
+    base_url: ${AGENTHARM_JUDGE_BASE_URL}
+    api_key: ${AGENTHARM_JUDGE_API_KEY}
+
+  agent_safetybench_official_judge:
+    provider: openai_compatible
+    name: ${AGENT_SAFETYBENCH_JUDGE_MODEL:thu-coai/ShieldAgent}
+    base_url: ${AGENT_SAFETYBENCH_JUDGE_BASE_URL}
+    api_key: ${AGENT_SAFETYBENCH_JUDGE_API_KEY:EMPTY}
+
+  asb_official_refuse_judge:
+    provider: openai_compatible
+    name: ${ASB_REFUSE_JUDGE_MODEL:gpt-4o-mini}
+    base_url: ${ASB_REFUSE_JUDGE_BASE_URL}
+    api_key: ${ASB_REFUSE_JUDGE_API_KEY}
+
+  lps_bench_official_judge:
+    provider: openai_compatible
+    name: ${LPS_BENCH_JUDGE_MODEL:Qwen/Qwen3-VL-8B-Instruct}
+    base_url: ${LPS_BENCH_JUDGE_BASE_URL}
+    api_key: ${LPS_BENCH_JUDGE_API_KEY:EMPTY}
+
+  agentlab_official_model:
+    provider: openai_compatible
+    name: ${AGENTLAB_MODEL:gpt-5.1}
+    base_url: ${AGENTLAB_BASE_URL}
+    api_key: ${AGENTLAB_API_KEY}

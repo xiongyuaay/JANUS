@@ -1,0 +1,8 @@
+{
+  "base_url": "${GUARD_BASE_URL:http://localhost:8000}",
+  "model_name": "${GUARD_MODEL:Qwen/Qwen3Guard-Gen-8B}",
+  "api_key": "${GUARD_API_KEY:EMPTY}",
+  "max_tokens": 128,
+  "temperature": 0.0,
+  "timeout": 60.0
+}

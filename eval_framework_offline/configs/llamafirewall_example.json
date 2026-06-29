@@ -1,0 +1,6 @@
+{
+  "scanners": {
+    "user": ["prompt_guard"],
+    "tool": ["prompt_guard"]
+  }
+}

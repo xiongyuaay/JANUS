@@ -1,0 +1,95 @@
+from __future__ import annotations
+
+import json
+from typing import Optional
+
+from multi_turn.config.llm import LLMConfig
+from multi_turn.modules.log import Log
+from multi_turn.modules.parse import parse_json
+from multi_turn.prompts.system import ORCHESTRATOR_MULTI_TURN_DECOMPOSITION_PROMPT
+
+from .base_agent import BaseAgent
+
+
+class OrchestratorAgent(BaseAgent):
+    """LLM-driven orchestrator for dispatch, merge, and revision."""
+
+    def __init__(self, config: LLMConfig, system_prompt: str = ORCHESTRATOR_MULTI_TURN_DECOMPOSITION_PROMPT):
+        super().__init__(config, system_prompt, "Orchestrator")
+
+    def dispatch(self, template: str) -> dict:
+        """Ask the LLM orchestrator to split the authoritative compiled prompt."""
+
+        Log.section("Stage: DISPATCH")
+        payload = {
+            "stage": "DISPATCH",
+            "template": template,
+        }
+        Log.info("Sending DISPATCH request to Orchestrator", self.name)
+        response = self.call_llm(json.dumps(payload, ensure_ascii=False, indent=2))
+        try:
+            result = parse_json(response)
+        except Exception:
+            self.dump_raw_response("dispatch_parse_failure", response)
+            raise
+        Log.success("Received DISPATCH result", self.name)
+        Log.json_preview(result)
+        return result
+
+    def revision(self, feedback: str, previous_case: Optional[dict]) -> dict:
+        """Ask the LLM orchestrator to apply human feedback."""
+
+        Log.section("Stage: REVISION")
+        payload = {
+            "stage": "REVISION",
+            "feedback": feedback,
+            "previous_case": previous_case or {},
+        }
+        Log.info("Sending REVISION request to Orchestrator", self.name)
+        response = self.call_llm(json.dumps(payload, ensure_ascii=False, indent=2))
+        try:
+            result = parse_json(response)
+        except Exception:
+            self.dump_raw_response("revision_parse_failure", response)
+            raise
+        Log.success("Received REVISION result", self.name)
+        Log.json_preview(result)
+        return result
+
+    def merge(
+        self,
+        instruction_output: dict,
+        decomposition_output: dict,
+        tool_output: dict,
+        criterion_output: dict,
+        tool_code: Optional[str],
+    ) -> dict:
+        """Ask the LLM orchestrator to combine worker outputs into one case."""
+
+        Log.section("Stage: MERGE")
+        payload = {
+            "stage": "MERGE",
+            "instruction_designer": instruction_output,
+            "instruction_decomposer": decomposition_output,
+            "tool_developer": tool_output,
+            "criteria_formulator": criterion_output,
+        }
+        Log.info("Sending MERGE request to Orchestrator", self.name)
+        user_message = json.dumps(payload, ensure_ascii=False, indent=2)
+        if tool_code:
+            user_message += f"\n\n```python\n{tool_code}\n```"
+        response = self.call_llm(user_message)
+        try:
+            result = parse_json(response)
+        except Exception:
+            self.dump_raw_response("merge_parse_failure", response)
+            raise
+        Log.success("Received MERGE result", self.name)
+        Log.json_preview(result)
+        return result
+
+    def run(self, input_data: dict) -> dict:
+        return self.dispatch(input_data.get("template", ""))
+
+    async def run_async(self, input_data: dict) -> dict:
+        return self.run(input_data)
