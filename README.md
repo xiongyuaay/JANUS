@@ -9,8 +9,12 @@
     <a href="https://github.com/xiongyuaay/JANUS">
       <img alt="GitHub Stars" src="https://img.shields.io/github/stars/xiongyuaay/JANUS?style=flat&logo=github" />
     </a>
-    <img alt="Model" src="https://img.shields.io/badge/Model-Coming_Soon-yellow?style=flat" />
-    <img alt="Dataset" src="https://img.shields.io/badge/Dataset-Coming_Soon-yellow?style=flat" />
+    <a href="https://huggingface.co/yuaay/vanguard">
+      <img alt="Vanguard Model" src="https://img.shields.io/badge/Model-Vanguard-FFD21E?style=flat&logo=huggingface&logoColor=000" />
+    </a>
+    <a href="https://huggingface.co/datasets/yuaay/janus-train-data">
+      <img alt="JANUS Training Dataset" src="https://img.shields.io/badge/Dataset-JANUS_Train_Data-FFD21E?style=flat&logo=huggingface&logoColor=000" />
+    </a>
   </h2>
 </div>
 
@@ -305,12 +309,10 @@ The evaluation outputs should include:
 
 ## 📥 Checkpoints and Data
 
-<!-- Replace the placeholders below after release. -->
-
 | Resource | Link | Description |
 |:---|:---|:---|
-| Vanguard checkpoint | Coming soon | Predictive guard initialized from Qwen3-8B and trained with CoAA-RL |
-| JANUS training data | Coming soon | 75,180 step-level anticipation and adjudication examples |
+| Vanguard checkpoint | [yuaay/vanguard](https://huggingface.co/yuaay/vanguard) | Predictive guard initialized from Qwen3-8B and trained with CoAA-RL |
+| JANUS training data | [yuaay/janus-train-data](https://huggingface.co/datasets/yuaay/janus-train-data) | 75,180 step-level anticipation and adjudication examples |
 | Generation prompts | `trajectory_pipeline/mcp_prompts/` | Scenario-construction strategies and category prompts |
 | Evaluation logs | `eval_framework_offline/runs/` and `eval_framework_online/results/unified/` | Per-benchmark predictions and intervention records |
 
