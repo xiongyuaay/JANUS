@@ -1,6 +1,6 @@
 <div align="center">
   <h2>
-    <img src="assets/logo.png" alt="JANUS Logo" width="72" style="vertical-align: middle; margin-right: 6px;" />
+    <img src="assets/logo_simplify.png" alt="JANUS Logo" width="72" style="vertical-align: middle; margin-right: 6px;" />
     JANUS: Foreseeing Latent Risk for Long-Horizon Agent Safety
     <br><br>
     <a href="https://arxiv.org/abs/XXXX.XXXXX">
@@ -39,11 +39,6 @@ Tool-using agents can edit files, invoke APIs, access external content, and exec
 
 The resulting guard model, **Vanguard**, performs two-stage prediction at inference time. It first anticipates a likely safety-relevant continuation and then adjudicates the trajectory using both the observed prefix and the anticipated future.
 
-<div align="center">
-  <img src="assets/intro4.png" alt="Comparison between reactive and predictive guards" width="95%" />
-  <p><em>Figure: Predictive guarding with JANUS.</em></p>
-</div>
-
 ## 🚀 News
 
 <!-- Replace the dates and links below when the corresponding resources are released. -->
@@ -76,8 +71,7 @@ JANUS constructs realistic but fully simulated agent trajectories through a mult
 8. Key decision points are converted into partial-trajectory training examples with future summaries and safety labels.
 
 <div align="center">
-  <img src="assets/method_data4.png" alt="JANUS simulation-based data construction pipeline" width="95%" />
-  <p><em>Figure: Simulation-based data construction.</em></p>
+  <a href="assets/method_data4.pdf"><strong>View the simulation-based data construction figure (PDF)</strong></a>
 </div>
 
 ### 2. Coupled Anticipation and Adjudication RL
@@ -95,8 +89,7 @@ The anticipation reward combines:
 This coupled objective encourages the model to forecast events that are not only plausible, but also useful for deciding whether intervention is necessary.
 
 <div align="center">
-  <img src="assets/method_rl4.png" alt="CoAA-RL training and inference framework" width="95%" />
-  <p><em>Figure: Coupled Anticipation and Adjudication Reinforcement Learning.</em></p>
+  <a href="assets/method_rl4.pdf"><strong>View the CoAA-RL training and inference figure (PDF)</strong></a>
 </div>
 
 ## 📦 Training Data
