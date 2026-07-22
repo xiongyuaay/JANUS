@@ -45,11 +45,8 @@ The resulting guard model, **Vanguard**, performs two-stage prediction at infere
 
 ## 🚀 News
 
-<!-- Replace the dates and links below when the corresponding resources are released. -->
-
-- **[2026/XX/XX]** Released the official implementation of JANUS and Vanguard.
-- **[2026/XX/XX]** Released the training data and model checkpoint.
-- **[2026/XX/XX]** Paper available on arXiv.
+- **[2026/07/22]** Released the official implementation of JANUS.
+- **[2026/07/22]** Released the [JANUS training data](https://huggingface.co/datasets/yuaay/janus-train-data) and [Vanguard model](https://huggingface.co/yuaay/vanguard).
 
 ## 🔥 Highlights
 
